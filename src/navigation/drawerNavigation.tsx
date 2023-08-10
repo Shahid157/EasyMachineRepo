@@ -10,7 +10,6 @@ const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
   const route = useSelector((state: any) => state?.CategorySlicer);
-  console.log('route=', route);
   return (
     <Drawer.Navigator initialRouteName={strings.dashboard_screen}>
       {route &&

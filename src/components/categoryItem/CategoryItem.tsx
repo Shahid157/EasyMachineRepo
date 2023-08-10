@@ -1,4 +1,4 @@
-import {FlatList, Text, TextInput, View} from 'react-native';
+import {FlatList, Text, View} from 'react-native';
 import {styles} from './styles';
 import strings from '../../utils/strings';
 import InputText from '../textInput/input';
@@ -14,7 +14,6 @@ const CategoryItem = ({
   data,
   onFieldTextChange,
   labelTitleText,
-  onTypePress,
   onTitleFieldPress,
   onAddNewFieldBtnPress,
   onRemovePress,
@@ -25,24 +24,14 @@ const CategoryItem = ({
   const [value, setValue] = useState(null);
   const [openType, setOpenType] = useState(false);
   const [valueType, setValueType] = useState(null);
-  const [items, setItems] = useState([
-    {label: 'Text'},
-    {label: 'Number'},
-    {label: 'CheckBox'},
-    {label: 'Date'},
-  ]);
+  const [items, setItems] = useState(strings.list_dropDown);
   const dispatch = useDispatch();
-  const [itemsType, setItemsType] = useState([
-    {label: 'Text'},
-    {label: 'Number'},
-    {label: 'CheckBox'},
-    {label: 'Date'},
-  ]);
+  const [itemsType, setItemsType] = useState(strings.list_dropDown);
+
   const onDeletePress = (index: number) => {
     dispatch(removeFieldData(index));
   };
   const ListFooterComponent = (item: any) => {
-    console.log('@@clg', JSON.stringify(item));
     return (
       <View>
         <TouchableOpacity

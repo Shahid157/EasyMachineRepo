@@ -6,7 +6,7 @@ import Button from '../../components/button/button';
 import {useSelector, useDispatch} from 'react-redux';
 import {addCategory, removeCategory} from '../../redux/toolkit/CategorySlicer';
 import {addFieldData} from '../../redux/toolkit/FieldDataSlicer';
-import DashboardItem from '../../components/dashboardItem/categoryItem';
+import CategoryItem from '../../components/categoryItem/categoryItem';
 
 const Dashboard = ({navigation}) => {
   const data = useSelector((state: any) => state?.CategorySlicer);
@@ -16,7 +16,7 @@ const Dashboard = ({navigation}) => {
   const [labelTitleText, setLabelTitleText] = useState(strings.unnamed_field);
   const renderItem = (item: any) => {
     return (
-      <DashboardItem
+      <CategoryItem
         labelText={
           item?.item?.categoryName ? item?.item?.categoryName : labelText
         }
