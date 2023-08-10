@@ -4,7 +4,7 @@ import strings from '../../utils/strings';
 import {styles} from './styles';
 import Button from '../../components/button/button';
 import {useSelector, useDispatch} from 'react-redux';
-import CategoryItem from '../../components/categoryItem/CategoryItem';
+import CategoryItem from '../../components/categoryItem/categoryItem';
 import {addCategory, removeCategory} from '../../redux/toolkit/CategorySlicer';
 import {addFieldData} from '../../redux/toolkit/FieldDataSlicer';
 
@@ -14,7 +14,6 @@ const ManageCat = () => {
   const dispatch = useDispatch();
   const [labelText, setLabelText] = useState('');
   const [labelTitleText, setLabelTitleText] = useState(strings.unnamed_field);
-  const initialArray = [{categoryName: 'New Category'}];
   const renderItem = (item: any) => {
     return (
       <CategoryItem
@@ -59,14 +58,16 @@ const ManageCat = () => {
           />
         </View>
       ) : (
-        <View style={{flex: 1}}>
-          <FlatList data={initialArray} renderItem={item => renderItem(item)} />
+        <View style={styles.noDataContainer}>
+          <Text style={styles.textStyle}>{strings.no_data}</Text>
           <Button
             style={styles.addCatBtnStyle}
             onPress={() => {
               if (labelText !== '') {
                 dispatch(addCategory({categoryName: labelText}));
                 setLabelText('');
+              } else {
+                dispatch(addCategory({categoryName: 'New Category'}));
               }
             }}
             buttonText={strings.add_category}

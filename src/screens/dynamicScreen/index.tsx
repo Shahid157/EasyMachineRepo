@@ -1,14 +1,23 @@
-import {Text, SafeAreaView, View} from 'react-native';
+import {SafeAreaView, FlatList} from 'react-native';
 import React from 'react';
-import strings from '../../utils/strings';
 import {styles} from './styles';
-import InputText from '../../components/textInput/input';
-import Button from '../../components/button/button';
+import {useSelector} from 'react-redux';
+import DynamicItem from '../../components/dynamicItem/dynamicItem';
 
-const DynamicScreen = ({navigation}) => {
+const DynamicScreen = ({navigation: any}) => {
+  const fieldData = useSelector((state: any) => state?.FieldDataSlicer);
+  console.log(fieldData);
+  const renderItem = (item: any) => {
+    <DynamicItem data={item} />;
+  };
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.textStyle}>{strings.manage_cat}</Text>
+      <FlatList
+        data={fieldData}
+        renderItem={(item: any) => {
+          renderItem(item);
+        }}
+      />
     </SafeAreaView>
   );
 };

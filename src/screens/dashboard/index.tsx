@@ -4,9 +4,9 @@ import strings from '../../utils/strings';
 import {styles} from './styles';
 import Button from '../../components/button/button';
 import {useSelector, useDispatch} from 'react-redux';
-import CategoryItem from '../../components/categoryItem/CategoryItem';
 import {addCategory, removeCategory} from '../../redux/toolkit/CategorySlicer';
 import {addFieldData} from '../../redux/toolkit/FieldDataSlicer';
+import DashboardItem from '../../components/dashboardItem/categoryItem';
 
 const Dashboard = ({navigation}) => {
   const data = useSelector((state: any) => state?.CategorySlicer);
@@ -14,10 +14,9 @@ const Dashboard = ({navigation}) => {
   const dispatch = useDispatch();
   const [labelText, setLabelText] = useState('');
   const [labelTitleText, setLabelTitleText] = useState(strings.unnamed_field);
-  const initialArray = {categoryName: 'New Category'};
   const renderItem = (item: any) => {
     return (
-      <CategoryItem
+      <DashboardItem
         labelText={
           item?.item?.categoryName ? item?.item?.categoryName : labelText
         }
@@ -46,7 +45,6 @@ const Dashboard = ({navigation}) => {
     <SafeAreaView style={styles.container}>
       {data.length !== 0 ? (
         <View style={{flex: 1}}>
-          <FlatList data={data} renderItem={item => renderItem(item)} />
           <Button
             style={styles.addCatBtnStyle}
             onPress={() => {
@@ -54,11 +52,12 @@ const Dashboard = ({navigation}) => {
                 dispatch(addCategory({categoryName: labelText}));
                 setLabelText('');
               } else {
-                alert('Please Add Cat First');
+                alert(strings.user_message);
               }
             }}
             buttonText={strings.add_category}
           />
+          <FlatList data={data} renderItem={item => renderItem(item)} />
         </View>
       ) : (
         <View style={styles.noDataContainer}>

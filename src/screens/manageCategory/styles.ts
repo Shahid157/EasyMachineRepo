@@ -10,7 +10,8 @@ export const styles = StyleSheet.create({
     backgroundColor: color.primaryColor.lightBlue,
   },
   noDataContainer: {
-    justifyContent: 'center',
+    flex: 1,
+    justifyContent: 'space-between',
   },
   textStyle: {
     margin: 15,
@@ -29,5 +30,6 @@ export const styles = StyleSheet.create({
     margin: 20,
     backgroundColor: color.primaryColor.blue,
   },
+
   inputStyle: {},
 });

@@ -16,16 +16,9 @@ const DrawerNavigator = () => {
       {route &&
         route.length !== 0 &&
         route.map((item: any, index: number) => {
-          if (route[index]?.categoryName === route[index - 1]?.categoryName) {
-            //do nothing
-          } else {
-            return (
-              <Drawer.Screen
-                name={item.categoryName}
-                component={DynamicScreen}
-              />
-            );
-          }
+          return (
+            <Drawer.Screen name={item.categoryName} component={DynamicScreen} />
+          );
         })}
       <Drawer.Screen name={strings.dashboard_screen} component={Dashboard} />
       <Drawer.Screen name={strings.manage_cat} component={ManageCat} />

@@ -16,4 +16,5 @@ export default {
     {label: 'CheckBox'},
     {label: 'Date'},
   ],
+  user_message: 'Please add some categories first',
 };
